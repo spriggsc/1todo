@@ -91,6 +91,11 @@ gulp.task('copy-img', function () {
     .pipe(gulp.dest('./build/images'));
 });
 
+gulp.task('copy-views', function () {
+  gulp.src(['./views/*.*', './views/**/*.*'])
+    .pipe(gulp.dest('./build/views'));
+});
+
 gulp.task('css-deps', function () {
   gulp.src([
       './node_modules/bootstrap/dist/css/bootstrap.min.css',
@@ -127,9 +132,10 @@ gulp.task('watch', function () {
   gulp.watch('less/**/*.less', ['less']);
   gulp.watch('app/**/*.html', ['templates']);
   gulp.watch('images/**/*.*', ['copy-img']);
+  gulp.watch('views/**/*.*', ['copy-views']);
 });
 
-gulp.task('serve', ['env', 'scripts', 'js-deps', 'css-deps', 'templates', 'less', 'copy-img', 'favicon', 'watch'], function () {
+gulp.task('serve', ['env', 'scripts', 'js-deps', 'css-deps', 'templates', 'less', 'copy-img','copy-views', 'favicon', 'watch'], function () {
   nodemon({
     script: 'app.js',
     ext: 'js html ejs',

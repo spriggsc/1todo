@@ -2,14 +2,54 @@
 <html lang="en" ng-app="app">
 <head>
     <meta charset="UTF-8">
-    <title>Bitwise MEAN Generator</title>
+    <title>1Todo</title>
     <link rel="stylesheet"
           href="css/deps.css">
     <link rel="stylesheet"
           href="css/app.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-<body>
+
     <ui-view></ui-view>
+    <body ng-controller="todoCtrl" style="background-color:#E3F5FA;">
+
+     <div class="container">
+      <table class="table">
+          <thead>
+          <tr>
+              <td><input class="form-control" ng-model="todo"></td>
+              <td><button class="btn btn-primary" ng-click="addItem()">Add</button></td>
+          </tr>
+          <tr>
+              <th>Tasks to be Completed</th>
+          </tr>
+          </thead>
+          <tbody>
+
+            <tr ng-repeat="todo in todolist">
+              <td ng-hide="todo.selected == true">{{todo.task}}</td>
+              <td>
+                  <input class="strikethrough" type="checkbox" style="text-decoration:line-through"></input>
+                  <input class="form-control" ng-show="todo.selected == true" ng-model="todo.task"></input>
+                  <button class="btn btn-success" ng-show="todo.selected == true" ng-click="save($index)">Save</button>
+                  <button class="btn btn-danger" ng-show="todo.selected == true" ng-click="cancel($index)">Cancel</button>
+                  <button class="btn btn-warning" ng-click="edit($index)" ng-hide="todo.selected == true">Edit</button>
+                  <button class="btn btn-danger" ng-click="deleteItem($index)" ng-hide="todo.selected == true">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</body>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script> -->
 
     <script src="js/deps.js"></script>
     <script src="js/templates.js"></script>

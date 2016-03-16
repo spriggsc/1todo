@@ -1,10 +1,10 @@
 angular.module('app', [
     'templates',
     'ui.router',
-    'welcome'
+    'todo'
   ])
   .config(function ($urlRouterProvider, $stateProvider) {
-    $urlRouterProvider.otherwise('/welcome');
+    $urlRouterProvider.otherwise('/todo');
   })
   .run(function () {
 
